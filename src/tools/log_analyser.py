@@ -30,7 +30,7 @@ def AnalyseLog(log):
         print(result)
 
         with open(report_path, "w") as f:
-            f.write()
+            f.write(result)
 
         return result
 
