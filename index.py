@@ -73,6 +73,17 @@ def get_report():
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
+@app.route("/api/raw-logs")
+def get_raw_logs():
+    try:
+        if not os.path.exists(log_path):
+            return jsonify({"content": "No logs generated yet."})
+        with open(log_path, "r", encoding="utf-8") as f:
+            content = f.read()
+        return jsonify({"content": content})
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
 @app.route("/api/analyze", methods=["POST"])
 def trigger_analysis():
     def run_analysis():
